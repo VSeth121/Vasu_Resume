@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vasu Seth | Digital Marketing Assistant</title>
+    <style>
+        :root {
+            --color-bg: #f8fafc;
+            --color-surface: #ffffff;
+            --color-text: #0f172a;
+            --color-text-secondary: #475569;
+            --color-accent: #2563eb;
+            --color-accent-light: #3b82f6;
+            --color-border: #e2e8f0;
+            --color-teal: #14b8a6;
+            --color-teal-light: #5eead4;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.7;
+            overflow-x: hidden;
+            font-weight: 400;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(135deg, #ffffff 0%, #eff6ff 50%, #f0f9ff 100%);
+            padding: 2rem;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(96, 165, 250, 0.06) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 15s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+            50% {
+                transform: translate(30px, -30px);
+            }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+            color: var(--color-text);
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+            color: var(--color-accent);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero .tagline {
+            font-size: 1.1rem;
+            color: var(--color-text-secondary);
+            max-width: 680px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+            font-weight: 400;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .contact-info a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: var(--color-accent);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        .scroll-indicator svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--color-text-secondary);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section {
+            margin-bottom: 5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--color-accent);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            color: var(--color-text-secondary);
+            margin-bottom: 3rem;
+            font-size: 1.05rem;
+        }
+
+        .card {
+            background: var(--color-surface);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--color-accent-light);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        .card-company {
+            color: var(--color-accent);
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .card-date {
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .card-location {
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .card-content li {
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+            position: relative;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+        }
+
+        .card-content li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--color-teal);
+            font-weight: 600;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--color-surface);
+            padding: 1.8rem;
+            border-radius: 16px;
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--color-accent-light);
+        }
+
+            background: linear-gradient(to bottom, transparent 0%, var(--color-gray-50) 20%, var(--color-gray-50) 80%, transparent 100%);
+            padding: 5rem 0;
+            margin: 3rem 0;
+        }
+
+        .skill-category h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--color-accent);
+            font-weight: 600;
+        }
+
+        .skill-category ul {
+            list-style: none;
+        }
+
+        .skill-category li {
+            padding: 0.4rem 0;
+            color: var(--color-text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .tools-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .tool-badge {
+            background: var(--color-surface);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 1px solid var(--color-border);
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .tool-badge:hover {
+            border-color: var(--color-accent);
+            color: var(--color-accent);
+            transform: translateY(-2px);
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .achievement-card {
+            background: var(--color-surface);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .achievement-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .achievement-label {
+            color: var(--color-text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .certifications {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1rem;
+        }
+
+        .cert-badge {
+            background: var(--color-surface);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--color-border);
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .cert-badge:hover {
+            border-color: var(--color-teal);
+            color: var(--color-teal);
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
+            border-radius: 20px;
+            color: white;
+            margin: 4rem 0;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2rem;
+            background: white;
+            color: var(--color-accent);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .card-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .container {
+                padding: 3rem 1.5rem;
+            }
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: var(--color-accent);
+            z-index: 1000;
+            transition: width 0.1s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Vasu Seth</h1>
+            <p class="subtitle">Digital Marketing Assistant</p>
+            <p class="tagline">Driving digital transformation in renewable energy through innovative marketing strategies, custom web development, and data-driven solutions that deliver measurable results</p>
+            <div class="contact-info">
+                <a href="tel:+918882283578">+91 8882283578</a>
+                <a href="mailto:sethvasu70@gmail.com">sethvasu70@gmail.com</a>
+                <a href="https://interioculture.com" target="_blank" rel="noopener noreferrer">interioculture.com</a>
+                <span>New Delhi, India</span>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3" />
+            </svg>
+        </div>
+    </section>
+
+    <div class="container">
+        <section class="section">
+            <h2 class="section-title">Professional Summary</h2>
+            <p class="section-subtitle">Driving digital excellence in renewable energy</p>
+            <div class="card">
+                <p style="color: var(--color-text-secondary); line-height: 1.8;">
+                    Results-driven Digital Marketing Assistant specializing in renewable energy sector marketing, full-stack web development, and CRM management. Proven track record of leading multi-channel digital campaigns, creating 150+ blogs, developing interactive web tools, and managing cross-functional teams. Expert in WordPress development, SEO optimization, social media management, and marketing automation with demonstrated success in driving engagement and lead generation for renewable energy companies.
+                </p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Key Achievements</h2>
+            <p class="section-subtitle">Measurable impact across digital channels</p>
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <div class="achievement-number">150+</div>
+                    <div class="achievement-label">SEO-Optimized Blogs</div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-number">200+</div>
+                    <div class="achievement-label">Social Bookmarks</div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-number">6</div>
+                    <div class="achievement-label">Interactive Tools Built</div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-number">120+</div>
+                    <div class="achievement-label">External Blogs Created</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Professional Experience</h2>
+            <p class="section-subtitle">Building digital excellence in renewable energy</p>
+            
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <h3 class="card-title">Digital Marketing Assistant</h3>
+                        <p class="card-company">Simple Green Energy</p>
+                        <p class="card-location">London, UK (Remote)</p>
+                    </div>
+                    <span class="card-date">Dec 2024 – Present</span>
+                </div>
+                <div class="card-content">
+                    <ul>
+                        <li>Lead and manage the Rise to Renewables project, overseeing all digital marketing initiatives and brand development</li>
+                        <li>Handle full-stack development for Simple Green Energy and Rise to Renewables websites, including front-end design, back-end functionality, and continuous optimization</li>
+                        <li>Execute comprehensive on-page and off-page SEO strategies, improving organic search rankings and website visibility</li>
+                        <li>Developed 6 custom interactive tools: Finance Tool, Solar Savings Calculator, Boiler Savings Calculator, and Grant Qualification Checkers</li>
+                        <li>Created responsive mega menu navigation systems for both company websites, enhancing user experience</li>
+                        <li>Manage social media presence across Instagram, Facebook, and LinkedIn for both brands</li>
+                        <li>Serve as primary CRM administrator, handling module creation, canvas design, and system customization for entire team</li>
+                        <li>Design and execute email marketing campaigns with custom template creation for lead nurturing</li>
+                        <li>Implement SMS campaigns through ClickSend SMS and Bland AI automated call generation for customer outreach</li>
+                        <li>Train and mentor interns on WordPress development, backlinking strategies, and social media management</li>
+                        <li>Coordinate with survey, installation, and complaints teams to generate weekly reports for accounts department</li>
+                        <li>Manage Google Analytics, Google Business Profile, and Google Search Console for performance tracking</li>
+                        <li>Create video content using Veo 3 for social media and marketing campaigns</li>
+                        <li>Develop brochures and marketing collateral for digital and print distribution</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <h3 class="card-title">Digital Marketing Specialist</h3>
+                        <p class="card-company">MatchaGlobal (Freelance)</p>
+                        <p class="card-location">Remote</p>
+                    </div>
+                    <span class="card-date">Jun 2023 – Dec 2024</span>
+                </div>
+                <div class="card-content">
+                    <ul>
+                        <li>Generated engaging social media content and reels, significantly enhancing brand's online presence</li>
+                        <li>Developed and executed targeted email marketing campaigns, improving customer retention</li>
+                        <li>Created 50+ SEO-friendly blog posts with strategic keyword optimization, driving organic traffic growth</li>
+                        <li>Managed multi-platform social media presence, increasing brand awareness across target demographics</li>
+                        <li>Utilized IndiaMART for B2B lead generation, identifying and qualifying high-quality prospects</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <h3 class="card-title">Freelance Digital Marketing Consultant</h3>
+                        <p class="card-company">Multiple Clients</p>
+                        <p class="card-location">Remote</p>
+                    </div>
+                    <span class="card-date">2020 – Present</span>
+                </div>
+                <div class="card-content">
+                    <ul>
+                        <li><strong>Asian Sign System</strong> – Digital marketing and website optimization for Delhi-based signage and branding company specializing in LED signage and ACP glow sign boards</li>
+                        <li><strong>Caribbou Perfumes</strong> – Comprehensive e-commerce marketing, SEO-optimized product descriptions for 20+ fragrances, content strategy for online perfume retail platform</li>
+                        <li><strong>MyPrintSolutions</strong> – Digital marketing and content optimization for commercial printing services offering banners, promotional materials, and custom printing solutions</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <h3 class="card-title">Digital Marketing Associate</h3>
+                        <p class="card-company">Interioculture</p>
+                        <p class="card-location">New Delhi, India</p>
+                    </div>
+                    <span class="card-date">Jun 2020 – Aug 2023</span>
+                </div>
+                <div class="card-content">
+                    <ul>
+                        <li>Developed comprehensive digital marketing strategies for interior design e-commerce platform</li>
+                        <li>Created engaging content for social media platforms, increasing online engagement and brand visibility</li>
+                        <li>Conducted keyword research and implemented SEO strategies to improve search engine rankings</li>
+                        <li>Explored and implemented affiliate marketing and dropshipping strategies to expand revenue streams</li>
+                        <li>Designed marketing graphics using CorelDRAW for various digital and print campaigns</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="skills-highlight">
+            <h2 class="section-title">Technical Skills</h2>
+            <p class="section-subtitle">Comprehensive digital marketing and development expertise</p>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Web Development</h3>
+                    <ul>
+                        <li>WordPress & Shopify Development</li>
+                        <li>HTML, CSS, JavaScript</li>
+                        <li>Front-end & Back-end Development</li>
+                        <li>Mega Menu Creation</li>
+                        <li>Custom Tool Development</li>
+                        <li>Responsive Design</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Digital Marketing</h3>
+                    <ul>
+                        <li>SEO (On-page & Off-page)</li>
+                        <li>Google Ads & Meta Ads</li>
+                        <li>Facebook & LinkedIn Ads</li>
+                        <li>Email Marketing</li>
+                        <li>SMS Marketing</li>
+                        <li>Content Marketing</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Marketing Automation</h3>
+                    <ul>
+                        <li>Pabbly Connect Integration</li>
+                        <li>Bland AI Implementation</li>
+                        <li>AI Chatbot Development</li>
+                        <li>ClickSend SMS</li>
+                        <li>Marketing Workflows</li>
+                        <li>Automation Systems</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Analytics & CRM</h3>
+                    <ul>
+                        <li>CRM Management & Customization</li>
+                        <li>Google Analytics</li>
+                        <li>Google Search Console</li>
+                        <li>Google Business Profile</li>
+                        <li>Ubersuggest</li>
+                        <li>Performance Tracking</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Content Creation</h3>
+                    <ul>
+                        <li>Blog Writing (150+ articles)</li>
+                        <li>Video Creation (Veo 3)</li>
+                        <li>Newsletter Design</li>
+                        <li>Brochure Design</li>
+                        <li>Social Media Content</li>
+                        <li>Copywriting</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Social Media Management</h3>
+                    <ul>
+                        <li>Instagram Marketing</li>
+                        <li>Facebook Campaigns</li>
+                        <li>LinkedIn Strategy</li>
+                        <li>Content Strategy</li>
+                        <li>Community Engagement</li>
+                        <li>Paid Social Campaigns</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Tools & Platforms</h2>
+            <p class="section-subtitle">Proficient across industry-leading technologies</p>
+            <div class="tools-grid">
+                <span class="tool-badge">WordPress</span>
+                <span class="tool-badge">Shopify</span>
+                <span class="tool-badge">Google Analytics</span>
+                <span class="tool-badge">Google Ads</span>
+                <span class="tool-badge">Meta Business Suite</span>
+                <span class="tool-badge">CorelDRAW</span>
+                <span class="tool-badge">Canva</span>
+                <span class="tool-badge">Veo 3</span>
+                <span class="tool-badge">Pabbly Connect</span>
+                <span class="tool-badge">ClickSend SMS</span>
+                <span class="tool-badge">Bland AI</span>
+                <span class="tool-badge">IndiaMART</span>
+                <span class="tool-badge">Ubersuggest</span>
+                <span class="tool-badge">Google Search Console</span>
+                <span class="tool-badge">Google Business Profile</span>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Education & Certifications</h2>
+            <p class="section-subtitle">Continuous learning and professional development</p>
+            <div class="certifications">
+                <div class="cert-badge">Generative AI Mastermind Course</div>
+                <div class="cert-badge">Delhi Institute of Digital Marketing</div>
+                <div class="cert-badge">Google Digital Garage</div>
+                <div class="cert-badge">HubSpot Academy</div>
+            </div>
+        </section>
+
+        <div class="cta-section">
+            <h2>Let's Connect</h2>
+            <p>Interested in discussing digital marketing strategies or collaboration opportunities?</p>
+            <a href="mailto:sethvasu70@gmail.com" class="btn">Get In Touch</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Vasu Seth. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Scroll progress bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+
+        // Intersection Observer for section animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Number counter animation for achievements
+        const animateCounter = (element, target) => {
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target + (target >= 100 ? '+' : '');
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current) + (target >= 100 ? '+' : '');
+                }
+            }, 30);
+        };
+
+        const achievementObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const numberElement = entry.target.querySelector('.achievement-number');
+                    const targetValue = parseInt(numberElement.textContent);
+                    animateCounter(numberElement, targetValue);
+                    achievementObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.achievement-card').forEach(card => {
+            achievementObserver.observe(card);
+        });
+    </script>
+</body>
+</html>
