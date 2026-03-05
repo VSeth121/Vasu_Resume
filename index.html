@@ -3,938 +3,903 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vasu Seth | Digital Marketing Assistant</title>
+    <title>Vasu Seth — Digital Marketing Specialist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
         :root {
-            --color-bg: #fafafa;
-            --color-surface: #ffffff;
-            --color-text: #1a1a1a;
-            --color-text-secondary: #666666;
-            --color-text-light: #888888;
-            --color-accent: #2563eb;
-            --color-accent-hover: #1d4ed8;
-            --color-border: #e5e5e5;
-            --color-teal: #0891b2;
-            --sidebar-width: 380px;
+            --sidebar-bg: #0a0f1e;
+            --sidebar-width: 310px;
+            --accent-blue: #4f8ef7;
+            --accent-teal: #22d3ee;
+            --accent-gradient: linear-gradient(135deg, #4f8ef7 0%, #22d3ee 100%);
+            --main-bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-light: #94a3b8;
+            --border: #e2e8f0;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+            --radius: 14px;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background: var(--color-bg);
-            color: var(--color-text);
+            font-family: 'Inter', sans-serif;
+            background: var(--main-bg);
+            color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        .layout {
-            display: flex;
-            min-height: 100vh;
-        }
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
 
-        /* Left Sidebar */
+        ::selection { background: rgba(79,142,247,0.2); color: var(--text-primary); }
+
+        .layout { display: flex; min-height: 100vh; }
+
+        /* ===== SIDEBAR ===== */
         .sidebar {
             width: var(--sidebar-width);
-            background: var(--color-surface);
-            padding: 3rem 2.5rem;
+            background: var(--sidebar-bg);
             position: fixed;
-            left: 0;
-            top: 0;
+            left: 0; top: 0;
             height: 100vh;
             overflow-y: auto;
-            border-right: 1px solid var(--color-border);
+            display: flex;
+            flex-direction: column;
             z-index: 100;
         }
 
-        .sidebar::-webkit-scrollbar {
-            width: 6px;
+        .sidebar::-webkit-scrollbar { width: 3px; }
+        .sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); }
+
+        .sidebar-inner { padding: 2.25rem 1.75rem; flex: 1; display: flex; flex-direction: column; }
+
+        /* Profile */
+        .profile {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
         }
 
-        .sidebar::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        .sidebar::-webkit-scrollbar-thumb {
-            background: var(--color-border);
-            border-radius: 3px;
-        }
-
-        .profile-section {
-            margin-bottom: 2.5rem;
-            animation: fadeInLeft 0.6s ease-out;
-        }
-
-        @keyframes fadeInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .profile-section h1 {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--color-text);
+        .profile-avatar {
+            width: 58px; height: 58px;
+            background: var(--accent-gradient);
+            border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.35rem; font-weight: 800; color: white;
+            margin-bottom: 1.1rem;
+            box-shadow: 0 8px 24px rgba(79,142,247,0.4);
             letter-spacing: -0.02em;
         }
 
-        .profile-section .title {
-            font-size: 1rem;
-            color: var(--color-accent);
-            font-weight: 500;
-            margin-bottom: 1rem;
+        .profile h1 {
+            font-size: 1.35rem; font-weight: 700;
+            color: #fff; letter-spacing: -0.025em;
+            margin-bottom: 0.25rem;
         }
 
-        .profile-section .tagline {
-            font-size: 0.9rem;
-            color: var(--color-text-secondary);
+        .profile .role {
+            font-size: 0.72rem; color: var(--accent-teal);
+            font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.09em; margin-bottom: 0.8rem;
+        }
+
+        .profile .tagline {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.45);
             line-height: 1.7;
-            margin-bottom: 1.5rem;
         }
 
-        .nav-menu {
-            margin-bottom: 2.5rem;
-            animation: fadeInLeft 0.8s ease-out;
+        .availability {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            background: rgba(34,197,94,0.1);
+            border: 1px solid rgba(34,197,94,0.22);
+            color: #4ade80; font-size: 0.68rem; font-weight: 600;
+            padding: 0.28rem 0.7rem; border-radius: 20px;
+            margin-top: 0.9rem; text-transform: uppercase; letter-spacing: 0.06em;
         }
 
-        .nav-menu ul {
-            list-style: none;
+        .availability::before {
+            content: '';
+            width: 5px; height: 5px;
+            background: #4ade80; border-radius: 50%;
+            animation: blink 2s infinite;
         }
 
-        .nav-menu li {
-            margin-bottom: 0.5rem;
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.25; }
         }
+
+        /* Nav */
+        .nav-section { margin-bottom: 2rem; }
+
+        .nav-label {
+            font-size: 0.63rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.12em;
+            color: rgba(255,255,255,0.25); margin-bottom: 0.5rem;
+        }
+
+        .nav-menu { list-style: none; }
+        .nav-menu li { margin-bottom: 1px; }
 
         .nav-menu a {
-            display: block;
-            padding: 0.75rem 1rem;
-            color: var(--color-text-secondary);
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 500;
-            border-radius: 8px;
-            transition: all 0.3s ease;
+            display: flex; align-items: center; gap: 0.6rem;
+            padding: 0.55rem 0.8rem;
+            color: rgba(255,255,255,0.5);
+            text-decoration: none; font-size: 0.83rem; font-weight: 500;
+            border-radius: 8px; transition: all 0.2s ease;
             position: relative;
         }
 
-        .nav-menu a::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 0;
-            height: 2px;
-            background: var(--color-accent);
-            transition: width 0.3s ease;
-        }
+        .nav-icon { font-size: 0.8rem; width: 16px; text-align: center; flex-shrink: 0; opacity: 0.7; }
 
-        .nav-menu a:hover,
+        .nav-menu a:hover { color: #fff; background: rgba(255,255,255,0.06); }
         .nav-menu a.active {
-            color: var(--color-accent);
-            background: rgba(37, 99, 235, 0.05);
-            padding-left: 1.5rem;
+            color: var(--accent-teal);
+            background: rgba(34,211,238,0.07);
         }
-
-        .nav-menu a:hover::before,
         .nav-menu a.active::before {
-            width: 4px;
+            content: '';
+            position: absolute; left: 0; top: 50%;
+            transform: translateY(-50%);
+            height: 65%; width: 2px;
+            background: var(--accent-teal);
+            border-radius: 0 2px 2px 0;
         }
 
-        .contact-section {
-            padding: 1.5rem 0;
-            border-top: 1px solid var(--color-border);
-            animation: fadeInLeft 1s ease-out;
+        /* Sidebar Contact */
+        .sidebar-contact {
+            margin-top: auto;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.07);
         }
 
-        .contact-section h3 {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--color-text-light);
-            margin-bottom: 1rem;
-            font-weight: 600;
+        .contact-item-s {
+            display: flex; align-items: center; gap: 0.6rem;
+            margin-bottom: 0.7rem; font-size: 0.78rem;
         }
 
-        .contact-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 0.9rem;
-            font-size: 0.9rem;
-        }
-
-        .contact-item svg {
-            width: 16px;
-            height: 16px;
-            margin-right: 0.75rem;
-            color: var(--color-accent);
+        .contact-icon {
+            width: 26px; height: 26px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 7px;
+            display: flex; align-items: center; justify-content: center;
             flex-shrink: 0;
         }
 
-        .contact-item a {
-            color: var(--color-text-secondary);
-            text-decoration: none;
-            transition: color 0.3s ease;
+        .contact-icon svg { width: 12px; height: 12px; color: var(--accent-teal); }
+
+        .contact-item-s a, .contact-item-s span {
+            color: rgba(255,255,255,0.45);
+            text-decoration: none; transition: color 0.2s;
             word-break: break-all;
         }
+        .contact-item-s a:hover { color: var(--accent-teal); }
 
-        .contact-item a:hover {
-            color: var(--color-accent);
+        /* ===== SCROLL PROGRESS ===== */
+        .scroll-progress {
+            position: fixed; top: 0;
+            left: var(--sidebar-width); right: 0;
+            height: 2px; background: var(--border);
+            z-index: 200;
         }
 
-        .contact-item span {
-            color: var(--color-text-secondary);
+        .scroll-bar {
+            height: 100%;
+            background: var(--accent-gradient);
+            width: 0%; transition: width 0.08s linear;
+            border-radius: 0 2px 2px 0;
         }
 
-        /* Main Content */
+        /* ===== MAIN CONTENT ===== */
         .main-content {
             margin-left: var(--sidebar-width);
             flex: 1;
-            padding: 3rem 4rem;
-            background: var(--color-bg);
-            position: relative;
+            padding: 3rem 3.5rem;
+            background: var(--main-bg);
         }
 
-        .main-content::before {
-            content: '';
-            position: fixed;
-            top: -50%;
-            right: -10%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(37, 99, 235, 0.03) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .main-content > * {
-            position: relative;
-            z-index: 1;
-        }
-
+        /* Sections */
         .section {
             margin-bottom: 4rem;
             opacity: 0;
-            animation: fadeInUp 0.8s ease-out forwards;
+            transform: translateY(20px);
+            transition: opacity 0.55s ease, transform 0.55s ease;
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .section:nth-child(1) { animation-delay: 0.2s; }
-        .section:nth-child(2) { animation-delay: 0.3s; }
-        .section:nth-child(3) { animation-delay: 0.4s; }
-        .section:nth-child(4) { animation-delay: 0.5s; }
+        .section.visible { opacity: 1; transform: translateY(0); }
 
         .section-header {
-            margin-bottom: 2rem;
+            display: flex; align-items: center; gap: 0.85rem;
+            margin-bottom: 1.5rem;
         }
 
-        .section-header h2 {
-            font-size: 1.75rem;
-            font-weight: 600;
-            color: var(--color-text);
-            margin-bottom: 0.5rem;
-            position: relative;
-            display: inline-block;
+        .section-icon {
+            width: 36px; height: 36px;
+            background: linear-gradient(135deg, rgba(79,142,247,0.1), rgba(34,211,238,0.1));
+            border: 1px solid rgba(79,142,247,0.15);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.95rem; flex-shrink: 0;
         }
 
-        .section-header h2::after {
+        .section-title h2 {
+            font-size: 1.25rem; font-weight: 700;
+            color: var(--text-primary); letter-spacing: -0.025em;
+        }
+
+        .section-title p {
+            font-size: 0.78rem; color: var(--text-light); margin-top: 1px;
+        }
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, var(--border) 0%, transparent 100%);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Summary */
+        .summary-card {
+            background: var(--card-bg);
+            padding: 1.65rem; border-radius: var(--radius);
+            border: 1px solid var(--border);
+            line-height: 1.82; color: var(--text-secondary);
+            font-size: 0.93rem; box-shadow: var(--shadow-sm);
+            position: relative; overflow: hidden;
+        }
+
+        .summary-card::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: var(--accent-gradient);
+        }
+
+        /* Achievements */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .achievement-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.4rem 1rem;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            position: relative; overflow: hidden;
+        }
+
+        .achievement-card::after {
+            content: '';
+            position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+            background: var(--accent-gradient);
+            transform: scaleX(0); transition: transform 0.3s ease;
+            transform-origin: left;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(79,142,247,0.1);
+            border-color: rgba(79,142,247,0.25);
+        }
+
+        .achievement-card:hover::after { transform: scaleX(1); }
+
+        .achievement-number {
+            font-size: 2.1rem; font-weight: 800;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.15; margin-bottom: 0.35rem;
+        }
+
+        .achievement-label { font-size: 0.78rem; color: var(--text-secondary); font-weight: 500; }
+
+        /* Timeline */
+        .timeline { position: relative; }
+
+        .timeline::before {
             content: '';
             position: absolute;
-            bottom: -6px;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--color-accent);
+            left: 13px; top: 14px; bottom: 30px; width: 2px;
+            background: linear-gradient(180deg, #4f8ef7 0%, #22d3ee 60%, transparent 100%);
             border-radius: 2px;
         }
 
-        .section-subtitle {
-            color: var(--color-text-secondary);
-            font-size: 0.95rem;
+        .timeline-item { position: relative; padding-left: 3rem; margin-bottom: 1.6rem; }
+
+        .timeline-dot {
+            position: absolute; left: 0; top: 10px;
+            width: 26px; height: 26px;
+            background: white;
+            border: 2px solid #4f8ef7;
+            border-radius: 7px;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 2;
+            box-shadow: 0 0 0 3px rgba(79,142,247,0.1);
         }
 
-        /* Summary Card */
-        .summary-card {
-            background: var(--color-surface);
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid var(--color-border);
-            line-height: 1.8;
-            color: var(--color-text-secondary);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+        .dot-inner {
+            width: 7px; height: 7px;
+            background: var(--accent-gradient);
+            border-radius: 2px;
         }
 
-        /* Experience Cards */
-        .experience-card {
-            background: var(--color-surface);
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid var(--color-border);
-            margin-bottom: 1.5rem;
+        .timeline-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.4rem;
+            box-shadow: var(--shadow-sm);
             transition: all 0.3s ease;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
         }
 
-        .experience-card:hover {
-            transform: translateX(4px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-            border-color: rgba(37, 99, 235, 0.2);
+        .timeline-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.07);
+            border-color: rgba(79,142,247,0.25);
         }
 
-        .exp-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-            gap: 1rem;
+        .timeline-header {
+            display: flex; justify-content: space-between;
+            align-items: flex-start; gap: 1rem; margin-bottom: 0.8rem;
         }
 
-        .exp-title-group h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--color-text);
-            margin-bottom: 0.3rem;
-        }
+        .job-title { font-size: 1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.18rem; }
+        .job-company { font-size: 0.85rem; font-weight: 600; color: var(--accent-blue); }
+        .job-location { font-size: 0.76rem; color: var(--text-light); margin-top: 0.12rem; }
 
-        .exp-company {
-            color: var(--color-accent);
-            font-weight: 500;
-            font-size: 1rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .exp-location {
-            color: var(--color-text-light);
-            font-size: 0.85rem;
-        }
-
-        .exp-date {
-            color: var(--color-text-secondary);
-            font-size: 0.85rem;
+        .job-date {
+            background: rgba(79,142,247,0.07);
+            color: var(--accent-blue);
+            font-size: 0.72rem; font-weight: 600;
+            padding: 0.28rem 0.7rem; border-radius: 20px;
             white-space: nowrap;
+            border: 1px solid rgba(79,142,247,0.15);
+            flex-shrink: 0;
         }
 
-        .exp-content ul {
-            list-style: none;
-            padding: 0;
+        .job-bullets { list-style: none; }
+
+        .job-bullets li {
+            display: flex; gap: 0.55rem;
+            font-size: 0.85rem; color: var(--text-secondary);
+            line-height: 1.62; margin-bottom: 0.42rem;
+            padding-bottom: 0.42rem;
+            border-bottom: 1px solid #f1f5f9;
         }
 
-        .exp-content li {
-            padding-left: 1.5rem;
-            margin-bottom: 0.7rem;
-            position: relative;
-            color: var(--color-text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.6;
+        .job-bullets li:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+        .job-bullets li::before {
+            content: '▸'; color: var(--accent-teal);
+            font-size: 0.6rem; margin-top: 0.33rem; flex-shrink: 0;
         }
 
-        .exp-content li::before {
-            content: '▸';
-            position: absolute;
-            left: 0;
-            color: var(--color-teal);
-            font-weight: 600;
-        }
-
-        /* Skills Grid */
+        /* Skills */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
         }
 
         .skill-card {
-            background: var(--color-surface);
-            padding: 1.75rem;
-            border-radius: 12px;
-            border: 1px solid var(--color-border);
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.2rem;
+            box-shadow: var(--shadow-sm);
             transition: all 0.3s ease;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
         }
 
         .skill-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            border-color: rgba(37, 99, 235, 0.3);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(79,142,247,0.2);
         }
+
+        .skill-card-head {
+            display: flex; align-items: center; gap: 0.55rem;
+            margin-bottom: 0.9rem;
+        }
+
+        .skill-emoji { font-size: 0.95rem; }
 
         .skill-card h3 {
-            font-size: 1.05rem;
-            color: var(--color-accent);
-            font-weight: 600;
-            margin-bottom: 1rem;
+            font-size: 0.83rem; font-weight: 700;
+            color: var(--text-primary);
         }
 
-        .skill-card ul {
-            list-style: none;
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+
+        .skill-tag {
+            background: #f1f5f9; color: var(--text-secondary);
+            font-size: 0.72rem; font-weight: 500;
+            padding: 0.25rem 0.6rem; border-radius: 5px;
+            border: 1px solid #e2e8f0; transition: all 0.2s;
         }
 
-        .skill-card li {
-            padding: 0.4rem 0;
-            color: var(--color-text-secondary);
-            font-size: 0.9rem;
+        .skill-tag:hover {
+            background: rgba(79,142,247,0.07);
+            border-color: rgba(79,142,247,0.22);
+            color: var(--accent-blue);
         }
 
-        /* Tools Section */
-        .tools-container {
-            display: flex;
-            flex-wrap: wrap;
+        /* Tools */
+        .tools-container { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+
+        .tool-pill {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.45rem 0.95rem;
+            font-size: 0.8rem; font-weight: 500;
+            color: var(--text-secondary);
+            transition: all 0.25s ease;
+            box-shadow: var(--shadow-sm);
+            cursor: default;
+        }
+
+        .tool-pill:hover {
+            border-color: var(--accent-blue); color: var(--accent-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(79,142,247,0.1);
+        }
+
+        /* Education */
+        .edu-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr);
+            gap: 1rem; margin-bottom: 1.25rem;
+        }
+
+        .edu-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.2rem; box-shadow: var(--shadow-sm);
+            display: flex; gap: 0.8rem; align-items: flex-start;
+            transition: all 0.3s ease;
+        }
+
+        .edu-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+
+        .edu-icon {
+            width: 36px; height: 36px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem; flex-shrink: 0;
+        }
+
+        .edu-icon.blue { background: rgba(79,142,247,0.1); }
+        .edu-icon.teal { background: rgba(34,211,238,0.1); }
+
+        .edu-degree { font-size: 0.87rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.18rem; }
+        .edu-inst { font-size: 0.78rem; font-weight: 600; color: var(--accent-blue); margin-bottom: 0.12rem; }
+        .edu-year { font-size: 0.72rem; color: var(--text-light); }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
             gap: 0.75rem;
         }
 
-        .tool-tag {
-            background: var(--color-surface);
-            padding: 0.6rem 1.2rem;
-            border-radius: 20px;
-            border: 1px solid var(--color-border);
-            font-size: 0.85rem;
-            color: var(--color-text-secondary);
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        .tool-tag:hover {
-            border-color: var(--color-accent);
-            color: var(--color-accent);
-            transform: translateY(-2px);
-            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.1);
-        }
-
-        /* Achievements Grid */
-        .achievements-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .achievement-box {
-            background: var(--color-surface);
-            padding: 2rem 1.5rem;
-            border-radius: 12px;
-            border: 1px solid var(--color-border);
-            text-align: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
-        }
-
-        .achievement-box:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        }
-
-        .achievement-number {
-            font-size: 2.75rem;
-            font-weight: 700;
-            color: var(--color-accent);
-            margin-bottom: 0.5rem;
-        }
-
-        .achievement-label {
-            color: var(--color-text-secondary);
-            font-size: 0.9rem;
-        }
-
-        /* Certifications */
-        .cert-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 1rem;
-        }
-
         .cert-item {
-            background: var(--color-surface);
-            padding: 1rem 1.25rem;
-            border-radius: 8px;
-            border: 1px solid var(--color-border);
-            font-size: 0.9rem;
-            color: var(--color-text-secondary);
-            text-align: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 10px; padding: 0.9rem 0.7rem;
+            text-align: center; font-size: 0.78rem;
+            color: var(--text-secondary); font-weight: 500;
+            box-shadow: var(--shadow-sm); transition: all 0.25s;
+            line-height: 1.4;
         }
 
-        .cert-item:hover {
-            border-color: var(--color-teal);
-            color: var(--color-teal);
+        .cert-item:hover { border-color: var(--accent-teal); color: #0891b2; transform: translateY(-2px); }
+
+        .cert-org {
+            display: block; font-size: 0.68rem;
+            color: var(--text-light); margin-top: 0.3rem;
         }
 
-        /* CTA Section */
+        /* CTA */
         .cta-card {
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-            padding: 3rem 2.5rem;
-            border-radius: 12px;
-            text-align: center;
-            color: white;
-            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.2);
+            background: linear-gradient(135deg, #0a0f1e 0%, #0d1f3c 100%);
+            border-radius: 18px; padding: 3rem;
+            text-align: center; position: relative; overflow: hidden;
+        }
+
+        .cta-card::before {
+            content: '';
+            position: absolute; top: -40%; left: -10%;
+            width: 380px; height: 380px;
+            background: radial-gradient(circle, rgba(79,142,247,0.14) 0%, transparent 65%);
+            border-radius: 50%;
+        }
+
+        .cta-card::after {
+            content: '';
+            position: absolute; bottom: -30%; right: -5%;
+            width: 280px; height: 280px;
+            background: radial-gradient(circle, rgba(34,211,238,0.1) 0%, transparent 65%);
+            border-radius: 50%;
         }
 
         .cta-card h2 {
-            font-size: 1.75rem;
-            margin-bottom: 0.75rem;
+            font-size: 1.75rem; font-weight: 800;
+            color: white; margin-bottom: 0.65rem;
+            position: relative; z-index: 1;
+            letter-spacing: -0.03em;
         }
 
         .cta-card p {
-            font-size: 1.05rem;
-            margin-bottom: 1.75rem;
-            opacity: 0.95;
+            color: rgba(255,255,255,0.6); font-size: 0.92rem;
+            margin-bottom: 1.65rem; position: relative; z-index: 1;
         }
 
         .cta-btn {
-            display: inline-block;
-            padding: 0.9rem 2.25rem;
-            background: white;
-            color: var(--color-accent);
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.82rem 2rem;
+            background: var(--accent-gradient);
+            color: white; text-decoration: none;
+            border-radius: 10px; font-weight: 700; font-size: 0.87rem;
+            position: relative; z-index: 1;
+            box-shadow: 0 6px 20px rgba(79,142,247,0.35);
             transition: all 0.3s ease;
-            font-size: 0.95rem;
         }
 
-        .cta-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
+        .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(79,142,247,0.45); }
 
         /* Footer */
         footer {
-            text-align: center;
-            padding: 2rem;
-            color: var(--color-text-light);
-            font-size: 0.85rem;
+            text-align: center; padding: 1.75rem;
+            color: var(--text-light); font-size: 0.76rem;
+            border-top: 1px solid var(--border); margin-top: 3rem;
         }
 
-        /* Mobile Responsive */
-        @media (max-width: 1024px) {
+        /* Mobile hamburger */
+        .hamburger {
+            display: none; position: fixed; top: 1rem; left: 1rem;
+            z-index: 300; background: var(--sidebar-bg);
+            border: none; border-radius: 8px;
+            padding: 0; cursor: pointer;
+            width: 38px; height: 38px;
+            flex-direction: column;
+            align-items: center; justify-content: center; gap: 4px;
+        }
+
+        .hamburger span { display: block; width: 18px; height: 2px; background: white; border-radius: 2px; transition: all 0.3s; }
+
+        .sidebar-overlay {
+            display: none; position: fixed; inset: 0;
+            background: rgba(0,0,0,0.5); z-index: 99;
+        }
+
+        /* Responsive */
+        @media (max-width: 1280px) {
+            .achievements-grid { grid-template-columns: repeat(2, 1fr); }
+            .cert-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 1100px) {
+            .main-content { padding: 2.5rem 2.25rem; }
+            .skills-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 900px) {
+            :root { --sidebar-width: 280px; }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            .sidebar-overlay { display: none; }
+            .sidebar-overlay.active { display: block; }
+
             .sidebar {
-                width: 100%;
-                position: relative;
-                height: auto;
-                border-right: none;
-                border-bottom: 1px solid var(--color-border);
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
             }
+            .sidebar.open { transform: translateX(0); }
 
-            .main-content {
-                margin-left: 0;
-                padding: 2rem 1.5rem;
-            }
-
-            .layout {
-                flex-direction: column;
-            }
-
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .exp-header {
-                flex-direction: column;
-            }
+            .main-content { margin-left: 0; max-width: 100%; padding: 4.5rem 1.5rem 2rem; }
+            .scroll-progress { left: 0; }
+            .timeline::before { display: none; }
+            .timeline-item { padding-left: 0; }
+            .timeline-dot { display: none; }
+            .edu-grid { grid-template-columns: 1fr; }
+            .skills-grid { grid-template-columns: 1fr; }
+            .cert-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
-        @media (max-width: 640px) {
-            .sidebar {
-                padding: 2rem 1.5rem;
-            }
-
-            .profile-section h1 {
-                font-size: 1.75rem;
-            }
-
-            .main-content {
-                padding: 2rem 1.25rem;
-            }
-
-            .section-header h2 {
-                font-size: 1.5rem;
-            }
-
-            .achievements-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .achievement-number {
-                font-size: 2.25rem;
-            }
-        }
-
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Selection */
-        ::selection {
-            background: rgba(37, 99, 235, 0.2);
-            color: var(--color-text);
+        @media (max-width: 480px) {
+            .achievements-grid { grid-template-columns: 1fr 1fr; }
+            .timeline-header { flex-direction: column; gap: 0.5rem; }
+            .cta-card { padding: 2rem 1.5rem; }
+            .cta-card h2 { font-size: 1.4rem; }
         }
     </style>
 </head>
 <body>
+
+    <!-- Scroll Progress -->
+    <div class="scroll-progress"><div class="scroll-bar" id="scrollBar"></div></div>
+
+    <!-- Mobile Toggle -->
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+    <div class="sidebar-overlay" id="overlay"></div>
+
     <div class="layout">
-        <!-- Left Sidebar -->
-        <aside class="sidebar">
-            <div class="profile-section">
-                <h1>Vasu Seth</h1>
-                <p class="title">Digital Marketing Assistant</p>
-                <p class="tagline">Driving digital transformation in renewable energy through innovative marketing strategies, custom web development, and data-driven solutions</p>
-            </div>
 
-            <nav class="nav-menu">
-                <ul>
-                    <li><a href="#summary" class="active">Summary</a></li>
-                    <li><a href="#achievements">Achievements</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#tools">Tools</a></li>
-                    <li><a href="#certifications">Certifications</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+        <!-- ===== SIDEBAR ===== -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-inner">
 
-            <div class="contact-section">
-                <h3>Contact Info</h3>
-                <div class="contact-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
-                    <a href="tel:+918882283578">+91 8882283578</a>
+                <div class="profile">
+                    <div class="profile-avatar">VS</div>
+                    <h1>Vasu Seth</h1>
+                    <div class="role">Digital Marketing Specialist</div>
+                    <p class="tagline">Driving digital transformation in renewable energy through innovative marketing, custom web development &amp; data-driven campaigns</p>
+                    <div class="availability">Open to Opportunities</div>
                 </div>
-                <div class="contact-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
-                    <a href="tel:+919311097492">+91 9311097492</a>
+
+                <div class="nav-section">
+                    <div class="nav-label">Navigate</div>
+                    <ul class="nav-menu">
+                        <li><a href="#summary" class="active"><span class="nav-icon">◈</span>Summary</a></li>
+                        <li><a href="#achievements"><span class="nav-icon">◎</span>Achievements</a></li>
+                        <li><a href="#experience"><span class="nav-icon">◉</span>Experience</a></li>
+                        <li><a href="#skills"><span class="nav-icon">◐</span>Skills</a></li>
+                        <li><a href="#tools"><span class="nav-icon">◧</span>Tools</a></li>
+                        <li><a href="#education"><span class="nav-icon">◑</span>Education</a></li>
+                        <li><a href="#contact"><span class="nav-icon">◒</span>Contact</a></li>
+                    </ul>
                 </div>
-                <div class="contact-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                    <a href="mailto:sethvasu70@gmail.com">sethvasu70@gmail.com</a>
+
+                <div class="sidebar-contact">
+                    <div class="nav-label">Contact</div>
+                    <div class="contact-item-s">
+                        <div class="contact-icon">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        </div>
+                        <a href="tel:+918882283578">+91 8882283578</a>
+                    </div>
+                    <div class="contact-item-s">
+                        <div class="contact-icon">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        </div>
+                        <a href="tel:+919311097492">+91 9311097492</a>
+                    </div>
+                    <div class="contact-item-s">
+                        <div class="contact-icon">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                        </div>
+                        <a href="mailto:sethvasu70@gmail.com">sethvasu70@gmail.com</a>
+                    </div>
+                    <div class="contact-item-s">
+                        <div class="contact-icon">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0zM15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                        </div>
+                        <span>New Delhi, India</span>
+                    </div>
                 </div>
-                <div class="contact-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                    <span>New Delhi, India</span>
-                </div>
+
             </div>
         </aside>
 
-        <!-- Main Content -->
+        <!-- ===== MAIN CONTENT ===== -->
         <main class="main-content">
-            <!-- Summary Section -->
+
+            <!-- Summary -->
             <section class="section" id="summary">
                 <div class="section-header">
-                    <h2>Professional Summary</h2>
-                    <p class="section-subtitle">Driving digital excellence in renewable energy</p>
+                    <div class="section-icon">◈</div>
+                    <div class="section-title">
+                        <h2>Professional Summary</h2>
+                        <p>Driving digital excellence in renewable energy</p>
+                    </div>
                 </div>
+                <div class="section-divider"></div>
                 <div class="summary-card">
-                    Results-driven Digital Marketing Assistant specializing in renewable energy sector marketing, full-stack web development, and CRM management. Proven track record of leading multi-channel digital campaigns, creating 150+ blogs, developing interactive web tools, and managing cross-functional teams. Expert in WordPress development, SEO optimization, social media management, and marketing automation with demonstrated success in driving engagement and lead generation for renewable energy companies.
+                    Results-driven Digital Marketing Specialist with expertise in renewable energy sector marketing, full-stack web development, and CRM management. Proven track record leading multi-channel digital campaigns, creating 150+ SEO-optimised blogs, developing 6 interactive web tools, and managing cross-functional teams. Expert in WordPress development, SEO optimisation, social media management, and marketing automation — turning browsers into buyers through strategy and code.
                 </div>
             </section>
 
-            <!-- Achievements Section -->
+            <!-- Achievements -->
             <section class="section" id="achievements">
                 <div class="section-header">
-                    <h2>Key Achievements</h2>
-                    <p class="section-subtitle">Measurable impact across digital channels</p>
-                </div>
-                <div class="achievements-grid">
-                    <div class="achievement-box">
-                        <div class="achievement-number">150+</div>
-                        <div class="achievement-label">SEO Blogs</div>
+                    <div class="section-icon">◎</div>
+                    <div class="section-title">
+                        <h2>Key Achievements</h2>
+                        <p>Measurable impact across digital channels</p>
                     </div>
-                    <div class="achievement-box">
+                </div>
+                <div class="section-divider"></div>
+                <div class="achievements-grid">
+                    <div class="achievement-card">
+                        <div class="achievement-number">150+</div>
+                        <div class="achievement-label">SEO Blogs Written</div>
+                    </div>
+                    <div class="achievement-card">
                         <div class="achievement-number">200+</div>
                         <div class="achievement-label">Social Bookmarks</div>
                     </div>
-                    <div class="achievement-box">
+                    <div class="achievement-card">
                         <div class="achievement-number">6</div>
-                        <div class="achievement-label">Tools Built</div>
+                        <div class="achievement-label">Custom Tools Built</div>
                     </div>
-                    <div class="achievement-box">
+                    <div class="achievement-card">
                         <div class="achievement-number">120+</div>
                         <div class="achievement-label">External Blogs</div>
                     </div>
                 </div>
             </section>
 
-            <!-- Experience Section -->
+            <!-- Experience -->
             <section class="section" id="experience">
                 <div class="section-header">
-                    <h2>Professional Experience</h2>
-                    <p class="section-subtitle">Building digital excellence in renewable energy</p>
-                </div>
-
-                <div class="experience-card">
-                    <div class="exp-header">
-                        <div class="exp-title-group">
-                            <h3>Digital Marketing Assistant</h3>
-                            <p class="exp-company">Simple Green Energy</p>
-                            <p class="exp-location">London, UK (Remote)</p>
-                        </div>
-                        <span class="exp-date">Dec 2024 – Present</span>
-                    </div>
-                    <div class="exp-content">
-                        <ul>
-                            <li>Lead and manage the Rise to Renewables project, overseeing all digital marketing initiatives and brand development</li>
-                            <li>Handle front-end development for Simple Green Energy and Rise to Renewables websites, including design implementation and continuous optimization</li>
-                            <li>Execute comprehensive on-page and off-page SEO strategies, improving organic search rankings and website visibility</li>
-                            <li>Developed 6 custom interactive tools: Finance Tool, Solar Savings Calculator, Boiler Savings Calculator, and Grant Qualification Checkers</li>
-                            <li>Created responsive mega menu navigation systems for both company websites, enhancing user experience</li>
-                            <li>Manage social media presence across Instagram, Facebook, and LinkedIn for both brands</li>
-                            <li>Serve as primary CRM administrator, handling module creation, canvas design, and system customization for entire team</li>
-                            <li>Design and execute email marketing campaigns with custom template creation for lead nurturing</li>
-                            <li>Implement SMS campaigns through ClickSend SMS and Bland AI automated call generation for customer outreach</li>
-                            <li>Train and mentor interns on WordPress development, backlinking strategies, and social media management</li>
-                        </ul>
+                    <div class="section-icon">◉</div>
+                    <div class="section-title">
+                        <h2>Professional Experience</h2>
+                        <p>Building digital excellence in renewable energy</p>
                     </div>
                 </div>
+                <div class="section-divider"></div>
+                <div class="timeline">
 
-                <div class="experience-card">
-                    <div class="exp-header">
-                        <div class="exp-title-group">
-                            <h3>Digital Marketing Specialist</h3>
-                            <p class="exp-company">MatchaGlobal (Freelance)</p>
-                            <p class="exp-location">Remote</p>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"><div class="dot-inner"></div></div>
+                        <div class="timeline-card">
+                            <div class="timeline-header">
+                                <div>
+                                    <div class="job-title">Digital Marketing Assistant</div>
+                                    <div class="job-company">Simple Green Energy</div>
+                                    <div class="job-location">📍 London, UK (Remote)</div>
+                                </div>
+                                <span class="job-date">Dec 2024 – Present</span>
+                            </div>
+                            <ul class="job-bullets">
+                                <li>Lead and manage the Rise to Renewables project, overseeing all digital marketing initiatives and brand development</li>
+                                <li>Handle front-end development for Simple Green Energy and Rise to Renewables websites, including design implementation and continuous optimisation</li>
+                                <li>Execute comprehensive on-page and off-page SEO strategies, improving organic search rankings and website visibility</li>
+                                <li>Developed 6 custom interactive tools: Finance Tool, Solar Savings Calculator, Boiler Savings Calculator, and Grant Qualification Checkers</li>
+                                <li>Created responsive mega menu navigation systems for both company websites, enhancing user experience</li>
+                                <li>Manage social media presence across Instagram, Facebook, and LinkedIn for both brands</li>
+                                <li>Serve as primary CRM administrator, handling module creation, canvas design, and system customisation for entire team</li>
+                                <li>Design and execute email marketing campaigns with custom template creation for lead nurturing</li>
+                                <li>Implement SMS campaigns through ClickSend SMS and Bland AI automated call generation for customer outreach</li>
+                                <li>Train and mentor interns on WordPress development, backlinking strategies, and social media management</li>
+                            </ul>
                         </div>
-                        <span class="exp-date">Jun 2023 – Dec 2024</span>
                     </div>
-                    <div class="exp-content">
-                        <ul>
-                            <li>Generated engaging social media content and reels, significantly enhancing brand's online presence</li>
-                            <li>Developed and executed targeted email marketing campaigns, improving customer retention</li>
-                            <li>Created 50+ SEO-friendly blog posts with strategic keyword optimization, driving organic traffic growth</li>
-                            <li>Managed multi-platform social media presence, increasing brand awareness across target demographics</li>
-                            <li>Utilized IndiaMART for B2B lead generation, identifying and qualifying high-quality prospects</li>
-                        </ul>
-                    </div>
-                </div>
 
-                <div class="experience-card">
-                    <div class="exp-header">
-                        <div class="exp-title-group">
-                            <h3>Freelance Digital Marketing Consultant</h3>
-                            <p class="exp-company">Multiple Clients</p>
-                            <p class="exp-location">Remote</p>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"><div class="dot-inner"></div></div>
+                        <div class="timeline-card">
+                            <div class="timeline-header">
+                                <div>
+                                    <div class="job-title">Digital Marketing Specialist</div>
+                                    <div class="job-company">MatchaGlobal (Freelance)</div>
+                                    <div class="job-location">📍 Remote</div>
+                                </div>
+                                <span class="job-date">Jun 2023 – Dec 2024</span>
+                            </div>
+                            <ul class="job-bullets">
+                                <li>Generated engaging social media content and reels, significantly enhancing the brand's online presence</li>
+                                <li>Developed and executed targeted email marketing campaigns, improving customer retention</li>
+                                <li>Created 50+ SEO-friendly blog posts with strategic keyword optimisation, driving organic traffic growth</li>
+                                <li>Managed multi-platform social media presence, increasing brand awareness across target demographics</li>
+                                <li>Utilised IndiaMART for B2B lead generation, identifying and qualifying high-quality prospects</li>
+                            </ul>
                         </div>
-                        <span class="exp-date">2020 – Present</span>
                     </div>
-                    <div class="exp-content">
-                        <ul>
-                            <li><strong>Asian Sign System</strong> – Digital marketing and website optimization for Delhi-based signage and branding company</li>
-                            <li><strong>Caribbou Perfumes</strong> – Comprehensive e-commerce marketing, SEO-optimized product descriptions for 20+ fragrances</li>
-                            <li><strong>MyPrintSolutions</strong> – Digital marketing and content optimization for commercial printing services</li>
-                        </ul>
-                    </div>
-                </div>
 
-                <div class="experience-card">
-                    <div class="exp-header">
-                        <div class="exp-title-group">
-                            <h3>Personal Project - Interioculture</h3>
-                            <p class="exp-company">Interior Wall Decor Panels E-commerce</p>
-                            <p class="exp-location">New Delhi, India</p>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"><div class="dot-inner"></div></div>
+                        <div class="timeline-card">
+                            <div class="timeline-header">
+                                <div>
+                                    <div class="job-title">Freelance Digital Marketing Consultant</div>
+                                    <div class="job-company">Multiple Clients</div>
+                                    <div class="job-location">📍 Remote</div>
+                                </div>
+                                <span class="job-date">2020 – Present</span>
+                            </div>
+                            <ul class="job-bullets">
+                                <li><strong>Asian Sign System</strong> – Digital marketing and website optimisation for Delhi-based signage and branding company</li>
+                                <li><strong>Caribbou Perfumes</strong> – E-commerce marketing and SEO-optimised product descriptions for 80+ fragrances</li>
+                                <li><strong>MyPrintSolutions</strong> – Digital marketing and content optimisation for commercial printing services</li>
+                            </ul>
                         </div>
-                        <span class="exp-date">Jun 2020 – Aug 2023</span>
                     </div>
-                    <div class="exp-content">
-                        <ul>
-                            <li>Founded and managed e-commerce platform specializing in interior wall decor panels</li>
-                            <li>Developed comprehensive digital marketing strategies for the platform</li>
-                            <li>Created engaging content for social media platforms, increasing online engagement</li>
-                            <li>Conducted keyword research and implemented SEO strategies to improve search rankings</li>
-                            <li>Explored affiliate marketing and dropshipping strategies to expand revenue streams</li>
-                        </ul>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"><div class="dot-inner"></div></div>
+                        <div class="timeline-card">
+                            <div class="timeline-header">
+                                <div>
+                                    <div class="job-title">Founder – Interioculture</div>
+                                    <div class="job-company">Interior Wall Decor Panels E-commerce</div>
+                                    <div class="job-location">📍 New Delhi, India</div>
+                                </div>
+                                <span class="job-date">Jun 2020 – Aug 2023</span>
+                            </div>
+                            <ul class="job-bullets">
+                                <li>Founded and managed an e-commerce platform specialising in interior wall decor panels</li>
+                                <li>Developed comprehensive digital marketing strategies including SEO, social media, and content marketing</li>
+                                <li>Conducted keyword research and implemented SEO strategies to improve organic search rankings</li>
+                                <li>Explored affiliate marketing and dropshipping strategies to expand revenue streams</li>
+                            </ul>
+                        </div>
                     </div>
+
                 </div>
             </section>
 
-            <!-- Skills Section -->
+            <!-- Skills -->
             <section class="section" id="skills">
                 <div class="section-header">
-                    <h2>Technical Skills</h2>
-                    <p class="section-subtitle">Comprehensive digital marketing and development expertise</p>
+                    <div class="section-icon">◐</div>
+                    <div class="section-title">
+                        <h2>Technical Skills</h2>
+                        <p>Comprehensive digital marketing and development expertise</p>
+                    </div>
                 </div>
+                <div class="section-divider"></div>
                 <div class="skills-grid">
                     <div class="skill-card">
-                        <h3>Web Development</h3>
-                        <ul>
-                            <li>WordPress & Shopify</li>
-                            <li>HTML, CSS, JavaScript</li>
-                            <li>Front-end Development</li>
-                            <li>Custom Tool Development</li>
-                            <li>Responsive Design</li>
-                        </ul>
+                        <div class="skill-card-head">
+                            <span class="skill-emoji">🌐</span>
+                            <h3>Web Development</h3>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">WordPress</span>
+                            <span class="skill-tag">Shopify</span>
+                            <span class="skill-tag">HTML & CSS</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">Front-end Dev</span>
+                            <span class="skill-tag">Custom Tools</span>
+                            <span class="skill-tag">Responsive Design</span>
+                        </div>
                     </div>
                     <div class="skill-card">
-                        <h3>Digital Marketing</h3>
-                        <ul>
-                            <li>SEO (On-page & Off-page)</li>
-                            <li>Google Ads & Meta Ads</li>
-                            <li>Facebook & LinkedIn Ads</li>
-                            <li>Email Marketing</li>
-                            <li>Content Marketing</li>
-                        </ul>
+                        <div class="skill-card-head">
+                            <span class="skill-emoji">📈</span>
+                            <h3>Digital Marketing</h3>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">SEO On-page</span>
+                            <span class="skill-tag">SEO Off-page</span>
+                            <span class="skill-tag">Google Ads</span>
+                            <span class="skill-tag">Meta Ads</span>
+                            <span class="skill-tag">LinkedIn Ads</span>
+                            <span class="skill-tag">Email Marketing</span>
+                            <span class="skill-tag">Content Marketing</span>
+                        </div>
                     </div>
                     <div class="skill-card">
-                        <h3>Marketing Automation</h3>
-                        <ul>
-                            <li>Pabbly Connect</li>
-                            <li>Bland AI</li>
-                            <li>AI Chatbot Development</li>
-                            <li>ClickSend SMS</li>
-                            <li>Marketing Workflows</li>
-                        </ul>
+                        <div class="skill-card-head">
+                            <span class="skill-emoji">⚙️</span>
+                            <h3>Marketing Automation</h3>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Pabbly Connect</span>
+                            <span class="skill-tag">Bland AI</span>
+                            <span class="skill-tag">AI Chatbot Dev</span>
+                            <span class="skill-tag">ClickSend SMS</span>
+                            <span class="skill-tag">Workflows</span>
+                        </div>
                     </div>
                     <div class="skill-card">
-                        <h3>Analytics & CRM</h3>
-                        <ul>
-                            <li>Zoho CRM & SalesIQ</li>
-                            <li>Google Analytics</li>
-                            <li>Google Search Console</li>
-                            <li>Performance Tracking</li>
-                            <li>CRM Customization</li>
-                        </ul>
-                    </div>
-                    <div class="skill-card">
-                        <h3>Content Creation</h3>
-                        <ul>
-                            <li>Blog Writing (150+ articles)</li>
-                            <li>Video Creation (Veo 3)</li>
-                            <li>Newsletter Design</li>
-                            <li>Brochure Design</li>
-                            <li>Social Media Content</li>
-                        </ul>
-                    </div>
-                    <div class="skill-card">
-                        <h3>Social Media</h3>
-                        <ul>
-                            <li>Instagram Marketing</li>
-                            <li>Facebook Campaigns</li>
-                            <li>LinkedIn Strategy</li>
-                            <li>Content Strategy</li>
-                            <li>Paid Social Campaigns</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Tools Section -->
-            <section class="section" id="tools">
-                <div class="section-header">
-                    <h2>Tools & Platforms</h2>
-                    <p class="section-subtitle">Proficient across industry-leading technologies</p>
-                </div>
-                <div class="tools-container">
-                    <span class="tool-tag">WordPress</span>
-                    <span class="tool-tag">Shopify</span>
-                    <span class="tool-tag">Google Analytics</span>
-                    <span class="tool-tag">Google Ads</span>
-                    <span class="tool-tag">Meta Business Suite</span>
-                    <span class="tool-tag">CorelDRAW</span>
-                    <span class="tool-tag">Canva</span>
-                    <span class="tool-tag">Veo 3</span>
-                    <span class="tool-tag">Pabbly Connect</span>
-                    <span class="tool-tag">ClickSend SMS</span>
-                    <span class="tool-tag">Bland AI</span>
-                    <span class="tool-tag">Zoho CRM</span>
-                    <span class="tool-tag">Zoho SalesIQ</span>
-                    <span class="tool-tag">Ubersuggest</span>
-                    <span class="tool-tag">Google Search Console</span>
-                </div>
-            </section>
-
-            <!-- Certifications Section -->
-            <section class="section" id="certifications">
-                <div class="section-header">
-                    <h2>Education & Certifications</h2>
-                    <p class="section-subtitle">Continuous professional development</p>
-                </div>
-                <div class="cert-grid">
-                    <div class="cert-item">Generative AI Mastermind Course</div>
-                    <div class="cert-item">Delhi Institute of Digital Marketing</div>
-                    <div class="cert-item">Google Digital Garage</div>
-                    <div class="cert-item">HubSpot Academy</div>
-                </div>
-            </section>
-
-            <!-- CTA Section -->
-            <section class="section" id="contact">
-                <div class="cta-card">
-                    <h2>Let's Connect</h2>
-                    <p>Interested in discussing digital marketing strategies or collaboration opportunities?</p>
-                    <a href="mailto:sethvasu70@gmail.com" class="cta-btn">Get In Touch</a>
-                </div>
-            </section>
-
-            <footer>
-                <p>&copy; 2025 Vasu Seth. All rights reserved.</p>
-            </footer>
-        </main>
-    </div>
-
-    <script>
-        // Active navigation highlight on scroll
-        const sections = document.querySelectorAll('.section');
-        const navLinks = document.querySelectorAll('.nav-menu a');
-
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (window.pageYOffset >= sectionTop - 100) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').slice(1) === current) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Smooth scroll for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+                        <div class="skill-card-head">
+                            <span class="skill-emoji">
